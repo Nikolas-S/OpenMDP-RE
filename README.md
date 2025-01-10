@@ -72,7 +72,7 @@ As a result of this change, it is no longer possible to turn off power to the pe
 </p>
 
 ### Schematic
-The schematic can be found in [/hw/schematic/](/hw/schematic) as an EasyEDA schematic json and PDF.  
+The schematic can be found in [/hw/schematic/](/hw/schematic/) as an EasyEDA schematic json and PDF.  
 
 ![pcb schematic](hw/images/schematic/schematic.svg)
 
@@ -126,7 +126,7 @@ TODO flow chart
 
 
 ## Custom Firmware
-This is an example on how to make custom firmware boot on the MDP-M01 while leaving the original bootloader untouched. The example project, located in [fw/custom_fw/m01_re](fw/custom_fw/m01_re), is just a scrappy proof of concept test project to try out a few peripherals. It's built on top of STM's HAL libraries and code generation using CubeMX.  
+This is an example on how to make custom firmware boot on the MDP-M01 while leaving the original bootloader untouched. The example project, located in [fw/custom_fw/m01_re/](fw/custom_fw/m01_re/), is just a scrappy proof of concept test project to try out a few peripherals. It's built on top of STM's HAL libraries and code generation using CubeMX.  
 
 The project is based on STM32CubeIDE and can be opened and built with it. (currently there is only a Debug build profile)
 
@@ -183,7 +183,7 @@ It is also possible to use the bin firmware update method described in the offic
 Debugging can be a bit more complicated. While the ST-Link GDB Server works perfectly fine with STM32, it refuses to connect to the GD32 clone with the error message: `ST-LINK: Could not verify ST device! Abort connection.`  
 Luckily, OpenOCD works with STM32/GD32 and various debug probes, including ST-Link, as long as you use the correct config file.
 To get debugging to work with my setup (cheap 7€ ST-Link v2 clone), I used the STM32 config files provided by OpenOCD as a basis and modified them to fit my setup. 
-I included the config files in the [example project](/fw/openocd/). Note that if you use the wrong config file (e.g. gd32f1x.cfg when your chip is an F3x), OpenOCD will complain about an ID mismatch and refuse to launch with the error message:  
+I included the config files in [/fw/openocd/](/fw/openocd/). Note that if you use the wrong config file (e.g. gd32f1x.cfg when your chip is an F3x), OpenOCD will complain about an ID mismatch and refuse to launch with the error message:  
 ```
 Warn : UNEXPECTED idcode: 0x2ba01477
 Error: expected 1 of 1: 0x1ba01477
