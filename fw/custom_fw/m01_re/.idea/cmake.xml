@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSharedSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Release" ENABLED="true" CONFIG_NAME="Release" TOOLCHAIN_NAME="stm32" />
+      <configuration PROFILE_NAME="ReleaseDebug" ENABLED="true" CONFIG_NAME="ReleaseDebug" TOOLCHAIN_NAME="stm32" />
+      <configuration PROFILE_NAME="Size" ENABLED="true" CONFIG_NAME="Size" TOOLCHAIN_NAME="stm32" />
+      <configuration PROFILE_NAME="MinSize" ENABLED="true" CONFIG_NAME="MinSize" TOOLCHAIN_NAME="stm32" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" TOOLCHAIN_NAME="stm32" />
+    </configurations>
+  </component>
+</project>

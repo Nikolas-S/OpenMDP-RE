@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="M01 F1 ST" type="com.jetbrains.cidr.embedded.customgdbserver.type" factoryName="com.jetbrains.cidr.embedded.customgdbserver.factory" PROGRAM_PARAMS="-p 56665 -cp &quot;/Applications/STMicroelectronics/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.2.0.202409170845/tools/bin&quot; --frequency 8000 --swd" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="m01_re" TARGET_NAME="m01_re.elf" CONFIG_NAME="Release" version="1" RUN_TARGET_PROJECT_NAME="m01_re" RUN_TARGET_NAME="m01_re.elf">
+    <custom-gdb-server version="1" gdb-connect="tcp::56665" executable="/Applications/STMicroelectronics/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.2.0.202409170845/tools/bin/ST-LINK_gdbserver" warmup-ms="0" download-type="UPDATED_ONLY" reset-cmd="monitor reset" reset-type="AFTER_DOWNLOAD">
+      <debugger kind="GDB">$PROJECT_DIR$/../../../../../../tools/stm32/gnu-tools-for-stm32_13-3-rel1/tools/bin/stm32-arm-none-eabi-gdb</debugger>
+    </custom-gdb-server>
+    <method v="2">
+      <option name="CLION.COMPOUND.BUILD" enabled="true" />
+    </method>
+  </configuration>
+</component>
