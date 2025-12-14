@@ -115,14 +115,22 @@ When looking at the device from the top:
 # Firmware
 ## Original Firmware
 The original firmware has two parts, a custom bootloader and the actual application.  
-The bootloader is located at the start of flash (0x800 0000) and is 0x8000 (32K) bytes in size.  
-The main application is placed after the bootloader at 0x800 8000.  
+The bootloader is located at the start of flash (0x0800 0000) and is 0x8000 (32K) bytes in size.  
+The main application is placed after the bootloader at 0x0800 8000.  
+The logo used in the bootloader screen and during boot is placed at 0x0803 D800 and is exactly 8310 bytes in size, it's a 256×64 4-bit indexed BMP with 16-color palette. The logo is not contained in any official firmware update files and not written during a firmware update.
+
 The bootloader does not perform any checks to verify firmware integrity (like checksums etc.), it just blindly calls the reset vector of the firmware.
 Official firmware update .bin files are unencrypted and are copied to the firmware flash location during firmware updates.
-  
-The startup sequence looks something like this:
 
-TODO flow chart
+## Custom Logo
+The logo that's shown during boot and in the bootloader screen is a 256×64 4-bit indexed BMP with 16-color palette placed at 0x0803 D800 and is exactly 8310 bytes in size.  
+16 colors isn't a lot unfortunately, but you can still get some decent looking results.  
+
+$\color{#FF4444}{\textsf{This is at your own risk, I take no responsibility in case something goes wrong.}}$  
+$\color{#FF4444}{\textsf{(Tested with bootloader versions V3.64D and V3.66D)}}$  
+The official bin update method can be used to write any image that is in the correct format by replacing the address in `MDP_ADR.ADR` with the location of the image (0x0803 D800) and then copying the BMP image with a .bin file extension to the device. See [fw/custom_logo/](fw/custom_logo/) for reference and a script that converts images to the correct format. The script requires ImageMagick and NetPBM to be installed, is used like so `./img2logo.sh <input_image>` and puts out two files, `logo.bmp` and `logo.bin`. The input image must be exactly 256 pixels wide and 64 pixels high. `logo.bmp` and `logo.bin` are the same file, just with different extensions, the `.bmp` for convenience so you see what the converted image looks like, and `.bin` to flash to the M01. 
+
+![custom logo](hw/images/photos/custom_logo.jpg)
 
 
 ## Custom Firmware
@@ -138,7 +146,7 @@ The STM32 version of the arm-none-eabi toolchain is provided by STM [on Github](
 ### To make custom firmware boot successfully, we have to:
 
 ### 1. change the start of the flash memory in the linker script
-Since the bootloader takes up the first 0x8000 bytes of our flash and the firmware is placed directly behind that, we have to tell the linker that our firmware will be placed at 0x8008000.
+Since the bootloader takes up the first 0x8000 bytes of our flash and the firmware is placed directly behind that, we have to tell the linker that our firmware will be placed at 0x0800 8000.
 In the linker script (`STM32F103VCTX_FLASH.ld`), we can set the origin of the flash region to `0x8008000` and change the length of the section to match.
 
 ```
@@ -150,8 +158,8 @@ MEMORY
 ```
 
 ### 2. set the vector table offset register (SCB->VTOR) to match the location of our firmware's vector table
-This has to be done during the init phase after the reset vector is called by the bootloader, before the main() of out custom firmware is called.
-In this case, our vector table starts at 0x8008000 since the first 0x8000 bytes are reserved for the bootloader and the firmware is placed directly after that.
+This has to be done during the init phase after the reset vector is called by the bootloader, before the main() of our custom firmware is called.
+In this case, our vector table starts at 0x0800 8000 since the first 0x8000 bytes are reserved for the bootloader and the firmware is placed directly after that.
 
 STM32 HAL has a way to do that:
 - in `system_stm32f1xx.c`, uncomment `#define USER_VECT_TAB_ADDRESS` and set `VECT_TAB_OFFSET` to `0x8000`
