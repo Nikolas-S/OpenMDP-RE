@@ -16,6 +16,7 @@ This project is not affiliated with, endorsed by, or associated with Guangzhou e
   - [Rotary encoders](#rotary-encoders)
 - [Firmware](#firmware)
   - [Original Firmware](#original-firmware)
+  - [Custom Logo](#custom-logo)
   - [Custom Firmware](#custom-firmware)
   - [Flashing/Debugging](#flashingdebugging)
     - [Flashing](#flashing)
